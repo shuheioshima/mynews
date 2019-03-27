@@ -13,4 +13,7 @@ class NewsController extends Controller
     return view('admin.news.create');
   }
 }
-  //view('admin.news.create');→create.blade.htmlファイルを呼び出すという意味。
+/*
+  view('admin.news.create');
+  →create.blade.htmlファイルを呼び出すという意味
+*/

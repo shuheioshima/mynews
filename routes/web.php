@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin'],function(){
 });
 //自コメント)  Route::get('news/create','Admin/NewsController@add');に['prefix' => 'admin']という背定を適用させている。
 /*
+間違いコード
 Route::get('admin/news/create','Admin\AAAController@bbb');
 */
 Route::get('XXX','AAAController@bbb');
@@ -29,4 +30,4 @@ Route::group(['prefix' => 'admin'], function(){
   Route::get('admin/profile/edit','Admin\ProfileController@edit');
 });
 // /はディレクトリ階層
-// \は
+// \はnamespaceのこと。上記だとadmin配下のProfileControllerのeditのアクションに繋げるという意味。
