@@ -16,18 +16,6 @@ Route::get('/', function () {
 });
 Route::group(['prefix' => 'admin'],function(){
   Route::get('news/create','Admin\NewsController@add');
+  Route::get('profile/create','Admin\ProfileController@add');
+  Route::get('profile/edit','Admin\ProfileController@edit');
 });
-//自コメント)  Route::get('news/create','Admin/NewsController@add');に['prefix' => 'admin']という背定を適用させている。
-/*
-間違いコード
-Route::get('admin/news/create','Admin\AAAController@bbb');
-*/
-Route::get('XXX','AAAController@bbb');
-//書き方参照　https://qiita.com/michiomochi@github/items/de19c560bc1dc19d698c
-
-Route::group(['prefix' => 'admin'], function(){
-  Route::get('admin/profile/create','Admin\ProfileController@add');
-  Route::get('admin/profile/edit','Admin\ProfileController@edit');
-});
-// /はディレクトリ階層
-// \はnamespaceのこと。上記だとadmin配下のProfileControllerのeditのアクションに繋げるという意味。
