@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Laravel.20にて追記
+        if (\App::environment('production')) {
+          \URL::forceScheme('http');
+        }
     }
 }

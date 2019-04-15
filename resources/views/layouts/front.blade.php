@@ -1,11 +1,4 @@
-{{-- layouts/admin.blade.phpを読み込む --}}
-@extends('layouts.admin')
-
-{{-- admin.blade.phpの@yield('title')に'ニュースの新規作成'を埋め込む --}}
-@section('title', 'プロフィール編集画面')
-
-{{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
-@section('content')
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -31,7 +24,7 @@
         <!-- Styles -->
         {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/front.css') }}" rel="stylesheet"> 
     </head>
 
     <body>
@@ -49,11 +42,38 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-
                         </ul>
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
+                          <ul class="navbar-nav ml-auto">
+
+                        {{-- 以下を追記 --}}
+                        <!-- Authentication Links -->
+                        {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
+                        @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest
+                            {{-- 以上までを追記 --}}
                         </ul>
                     </div>
                 </div>
@@ -66,4 +86,4 @@
             </main>
         </div>
     </body>
-@endsection
+</html>
